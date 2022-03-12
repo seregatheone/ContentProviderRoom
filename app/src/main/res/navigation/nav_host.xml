@@ -12,27 +12,18 @@
         tools:layout="@layout/fragment_start" >
         <action
             android:id="@+id/action_startFragment_to_changeContatcFragment"
-            app:destination="@id/changeContatcFragment" />
-        <action
-            android:id="@+id/action_startFragment_to_addNewContactFragment"
-            app:destination="@id/addNewContactFragment" />
+            app:destination="@id/changeContactFragment" />
     </fragment>
     <fragment
-        android:id="@+id/changeContatcFragment"
+        android:id="@+id/changeContactFragment"
         android:name="com.example.a15.fragments.ChangeContactFragment"
-        android:label="fragment_change_contatc"
+        android:label="fragment_change_contact"
         tools:layout="@layout/fragment_change_contact" >
         <action
-            android:id="@+id/action_changeContatcFragment_to_startFragment"
+            android:id="@+id/action_changeContactFragment_to_startFragment"
             app:destination="@id/startFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/addNewContactFragment"
-        android:name="com.example.a15.AddNewContactFragment"
-        android:label="fragment_add_new_contact"
-        tools:layout="@layout/fragment_add_new_contact" >
-        <action
-            android:id="@+id/action_addNewContactFragment_to_startFragment"
-            app:destination="@id/startFragment" />
+        <argument
+            android:name="contactData"
+            app:argType="com.example.a15.data.models.Contact" />
     </fragment>
 </navigation>

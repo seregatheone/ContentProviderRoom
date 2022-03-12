@@ -3,11 +3,8 @@ package com.example.a15.data
 import android.annotation.SuppressLint
 import android.content.Context
 import android.provider.ContactsContract
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
-import com.example.a15.models.Contact
+import com.example.a15.data.models.Contact
 
 @SuppressLint("Range")
 class ContentProvider (context: Context){

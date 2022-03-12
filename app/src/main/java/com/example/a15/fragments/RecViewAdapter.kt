@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a15.R
-import com.example.a15.models.Contact
+import com.example.a15.data.models.Contact
 
 class RecViewAdapter : RecyclerView.Adapter<RecViewAdapter.MyViewHolder>() {
 
@@ -27,17 +29,23 @@ class RecViewAdapter : RecyclerView.Adapter<RecViewAdapter.MyViewHolder>() {
         val note = listHolder.findViewById<TextView>(R.id.note)
         note.text = currentItem.note
 
-        //note
+        //id
         val id = listHolder.findViewById<TextView>(R.id.id)
-        id.text = currentItem.id.toString()
+//        id.text = currentItem.id.toString()
+        id.text = position.toString()
 
-        //note
+        //name
         val name = listHolder.findViewById<TextView>(R.id.name)
         name.text = currentItem.name
+
+        //pass data between start and change fragments
+        holder.itemView.findViewById<ConstraintLayout>(R.id.rowLayout).setOnClickListener {
+            val action = StartFragmentDirections.actionStartFragmentToChangeContatcFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int = contactList.size
-
 
     @SuppressLint("NotifyDataSetChanged")
     fun setContactListData(list: List<Contact>){

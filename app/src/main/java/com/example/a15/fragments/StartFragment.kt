@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.a15.data.models.Contact
 import com.example.a15.databinding.FragmentStartBinding
 
 class StartFragment : Fragment() {
@@ -23,6 +24,7 @@ class StartFragment : Fragment() {
 
     private var _adapter : RecViewAdapter? = RecViewAdapter()
     private val adapter = _adapter!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +39,14 @@ class StartFragment : Fragment() {
         val recView = binding.recView
         recView.adapter = adapter
         recView.layoutManager = LinearLayoutManager(requireContext())
+        var did = 0
         viewModel.readAllData.observe(viewLifecycleOwner
-        ) {
-            adapter.setContactListData(it)
+        ) { viewModelReadContact ->
+            if (did == 0){
+                viewModel.workWithTable(viewModelReadContact)
+                did+=1
+            }
+            adapter.setContactListData(viewModelReadContact)
         }
         super.onViewCreated(view, savedInstanceState)
     }

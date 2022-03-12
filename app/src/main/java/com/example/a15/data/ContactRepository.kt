@@ -1,7 +1,7 @@
 package com.example.a15.data
 
 import androidx.lifecycle.LiveData
-import com.example.a15.models.Contact
+import com.example.a15.data.models.Contact
 
 class ContactRepository (private val contactDao : ContactDao){
 
@@ -17,6 +17,9 @@ class ContactRepository (private val contactDao : ContactDao){
 
     suspend fun deleteContact(contact: Contact){
         contactDao.deleteContact(contact)
+    }
+    suspend fun deleteAllContact(){
+        contactDao.deleteAllContact()
     }
 
 }

@@ -2,7 +2,7 @@ package com.example.a15.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.a15.models.Contact
+import com.example.a15.data.models.Contact
 
 @Dao
 interface ContactDao {
@@ -10,7 +10,7 @@ interface ContactDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addContact(contact: Contact)
 
-    @Query("SELECT * FROM contact_table ORDER by id ASC")
+    @Query("SELECT * FROM result_contact_table ORDER by id ASC")
     fun readAllContacts(): LiveData<List<Contact>>
 
     @Update
@@ -18,4 +18,7 @@ interface ContactDao {
 
     @Delete
     suspend fun deleteContact(contact: Contact)
+
+    @Query("DELETE FROM result_contact_table")
+    suspend fun deleteAllContact()
 }
